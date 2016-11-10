@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/19 16:12:22 by mmoullec          #+#    #+#             */
-/*   Updated: 2016/11/07 17:45:15 by mmoullec         ###   ########.fr       */
+/*   Updated: 2016/11/10 10:17:10 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,5 +125,7 @@ char					*ft_convert_base(char *nbr, char *base_from, \
 void					ft_freeone(void *cont, size_t cont_size);
 
 double					ft_atof(const char *s);
+
+void					ft_tab_clr(char ***tab);
 
 #endif

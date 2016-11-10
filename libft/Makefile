@@ -6,7 +6,7 @@
 #    By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 18:46:08 by mmoullec          #+#    #+#              #
-#    Updated: 2016/11/07 17:46:35 by mmoullec         ###   ########.fr        #
+#    Updated: 2016/11/10 10:20:14 by mmoullec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,7 +83,8 @@ ft_convert_base.c\
 ft_len_nb.c\
 ft_lstadd_s.c\
 ft_freeone.c\
-ft_atof.c
+ft_atof.c\
+ft_tab_clr.c
 
 
 OBJ = $(SRC:.c=.o)
@@ -91,11 +92,17 @@ OBJ = $(SRC:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	ar rc $(NAME) $? $(OBJ)
-	ranlib $(NAME)
+	@echo "compil lib"
+	@ar rc $(NAME) $? $(OBJ)
+	@echo "ok"
+	@echo "ranlib"
+	@ranlib $(NAME)
+	@echo "ok"
+
 
 %.o: %.c
-	$(CC) -o $@ -c $< -I.
+	@$(CC) -o $@ -c $< -I.
+	@echo $@ " ok"
 
 clean:
 	/bin/rm -f $(OBJ)

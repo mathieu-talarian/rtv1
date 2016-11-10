@@ -1,21 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rt.h                                               :+:      :+:    :+:   */
+/*   rt_formes.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/19 12:51:34 by mmoullec          #+#    #+#             */
-/*   Updated: 2016/11/10 15:27:31 by mmoullec         ###   ########.fr       */
+/*   Created: 2016/11/10 15:00:21 by mmoullec          #+#    #+#             */
+/*   Updated: 2016/11/10 18:29:58 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RT_H
-# define RT_H
+#ifndef RT_FORMES_H
+# define RT_FORMES_H
 
-# include "./libft/libft.h"
-# include <fcntl.h>
 # include <mlx.h>
+# include "../libft/libft.h"
+# define WNA1 (*e)->s->name
+# define WH1 (*e)->s->win_dim.h
+# define WW1 (*e)->s->win_dim.w
+
+# define WNA e->s->name
+# define WH e->s->win_dim.h
+# define WW e->s->win_dim.w
+
+
+
 
 typedef struct		s_pars
 {
@@ -25,8 +34,8 @@ typedef struct		s_pars
 
 typedef struct		s_hw
 {
-	int				height;
-	int				width;
+	int				h;
+	int				w;
 }					t_hw;
 
 typedef struct	s_xy
@@ -72,21 +81,12 @@ typedef struct	s_e
 	int			sl;
 	int			bpp;
 	char		*d_a;
+	t_scene		*s;
 }				t_e;
 
-void	continue_pars(char *str);
-void	fill_list(char *line, t_list **l);
-void	tab_clr(char ***tab);
 
-int		parseur(char *fn);
+int			start_rt(t_e *e);
+void		circle(t_e *e);
 
-char	*get_scene_name(t_list **l);
-t_hw	get_win(t_list **l);
-t_xyz	get_cam(t_list **l);
 
-void	print_scene(t_scene **s);
-
-int		test_doc(t_list **l);
-
-void	print_list(t_list **l);
 #endif

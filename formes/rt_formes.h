@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/10 15:00:21 by mmoullec          #+#    #+#             */
-/*   Updated: 2016/11/10 18:29:58 by mmoullec         ###   ########.fr       */
+/*   Updated: 2016/11/15 20:31:11 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,6 @@
 # define WNA e->s->name
 # define WH e->s->win_dim.h
 # define WW e->s->win_dim.w
-
-
-
 
 typedef struct		s_pars
 {
@@ -58,19 +55,19 @@ typedef struct		s_rgb
 	unsigned int	b;
 }					t_rgb;
 
-typedef struct		s_obj
+typedef struct		s_sphere
 {
 	char			*name;
+	double			inter;
 	t_rgb			rgb;
-	struct s_obj	*next;
-}					t_obj;
+}					t_sphere;
 
 typedef struct	s_scene
 {
 	char		*name;
 	t_xyz		cam_origin;
 	t_hw		win_dim;
-	t_obj		*obj;
+	t_list		*obj;
 }				t_scene;
 
 typedef struct	s_e
@@ -87,6 +84,7 @@ typedef struct	s_e
 
 int			start_rt(t_e *e);
 void		circle(t_e *e);
+void		rec_l(t_list **obj);
 
 
 #endif

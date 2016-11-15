@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/19 16:12:22 by mmoullec          #+#    #+#             */
-/*   Updated: 2016/11/10 10:17:10 by mmoullec         ###   ########.fr       */
+/*   Updated: 2016/11/15 20:33:37 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,13 @@ typedef struct			s_list
 	size_t			content_size;
 	struct s_list	*next;
 }						t_list;
+
+typedef struct			s_vector
+{
+	double				x;
+	double				y;
+	double				z;
+}						t_vector;
 
 void					*ft_memset(void *s, int c, size_t n);
 void					ft_bzero(void *s, size_t n);

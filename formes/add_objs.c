@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_s.c                                      :+:      :+:    :+:   */
+/*   add_objs.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/19 18:04:32 by mmoullec          #+#    #+#             */
-/*   Updated: 2016/11/15 16:48:56 by mmoullec         ###   ########.fr       */
+/*   Created: 2016/11/15 16:28:23 by mmoullec          #+#    #+#             */
+/*   Updated: 2016/11/15 16:57:04 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "rt_formes.h"
 
-void	ft_lstadd_s(t_list **alst, t_list *new)
+void		rec_l(t_list **l)
 {
-	if (new)
+	t_sphere *sp;
+	printf("TEEEST\n");
+	if (!(*l))
+		dprintf(1, "list n'existe pas");
+	else
 	{
-		if (!(*alst))
-			*alst = new;
-		else
-		{
-			while ((*alst)->next)
-				(*alst) = (*alst)->next;
-			(*alst)->next = new;
-		}
+		sp = (*l)->content;
+		printf("%s\n", sp->name);
+		printf("%f\n", sp->inter);
 	}
 }

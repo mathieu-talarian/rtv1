@@ -6,11 +6,12 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/07 17:43:15 by mmoullec          #+#    #+#             */
-/*   Updated: 2016/11/07 17:45:13 by mmoullec         ###   ########.fr       */
+/*   Updated: 2016/11/15 21:10:15 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
 
 double ft_atof(const char *s)
 {

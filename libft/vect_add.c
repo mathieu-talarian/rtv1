@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   add_objs.c                                         :+:      :+:    :+:   */
+/*   vect_add.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/15 16:28:23 by mmoullec          #+#    #+#             */
-/*   Updated: 2016/11/15 20:46:10 by mmoullec         ###   ########.fr       */
+/*   Created: 2016/11/15 20:49:55 by mmoullec          #+#    #+#             */
+/*   Updated: 2016/11/15 20:59:26 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rt_formes.h"
+#include "libft.h"
 
-void		rec_l(t_list **l)
+t_vector	vect_add(t_vector a, t_vector b)
 {
-	t_sphere *sp;
-	printf("TEEEST\n");
-	if (!(*l))
-		dprintf(1, "list n'existe pas");
-	else
-	{
-		sp = (*l)->content;
-		printf("%s\n", sp->name);
-		printf("%f\n", sp->inter);
-	}
+	t_vector res;
+
+	res.x = a.x + b.x;
+	res.y = a.y + b.y;
+	res.z = a.z + b.z;
+	return (res);
 }

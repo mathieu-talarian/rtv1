@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/10 15:00:21 by mmoullec          #+#    #+#             */
-/*   Updated: 2016/11/15 20:31:11 by mmoullec         ###   ########.fr       */
+/*   Updated: 2016/11/21 18:49:00 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef struct		s_sphere
 {
 	char			*name;
 	double			inter;
+	t_xyz			centre;
 	t_rgb			rgb;
 }					t_sphere;
 
@@ -67,18 +68,18 @@ typedef struct	s_scene
 	char		*name;
 	t_xyz		cam_origin;
 	t_hw		win_dim;
-	t_list		*obj;
+	t_sphere		*obj;
 }				t_scene;
 
 typedef struct	s_e
 {
+	t_scene		*s;
 	void		*m;
 	void		*w;
 	void		*i;
 	int			sl;
 	int			bpp;
 	char		*d_a;
-	t_scene		*s;
 }				t_e;
 
 
@@ -86,5 +87,8 @@ int			start_rt(t_e *e);
 void		circle(t_e *e);
 void		rec_l(t_list **obj);
 
+t_scene		*fill_hard_scene();
+void		print_scene(t_scene **e);
+void		mlc(t_e **e);
 
 #endif

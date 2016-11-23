@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/10 18:31:12 by mmoullec          #+#    #+#             */
-/*   Updated: 2016/11/22 19:25:55 by mmoullec         ###   ########.fr       */
+/*   Updated: 2016/11/23 19:11:51 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ t_scene		*fill_hard_scene(void)
 	t_scene	*s;
 	s = (t_scene *)malloc(sizeof(t_scene));
 	s->name = ft_strdup("test");
-	s->cam_origin.x = -10.0;
+	s->cam_origin.x = 0.0;
 	s->cam_origin.y = 0.0;
-	s->cam_origin.z = 0.0;
+	s->cam_origin.z = -10.0;
 	s->win_dim.w = 1080;
 	s->win_dim.h = 800;
 	s->obj = NULL;

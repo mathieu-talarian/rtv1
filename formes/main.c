@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/10 18:31:12 by mmoullec          #+#    #+#             */
-/*   Updated: 2016/11/21 18:48:59 by mmoullec         ###   ########.fr       */
+/*   Updated: 2016/11/22 19:25:55 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,11 @@ t_scene		*fill_hard_scene(void)
 	t_scene	*s;
 	s = (t_scene *)malloc(sizeof(t_scene));
 	s->name = ft_strdup("test");
-	s->cam_origin.x = 0.0;
+	s->cam_origin.x = -10.0;
 	s->cam_origin.y = 0.0;
 	s->cam_origin.z = 0.0;
-	s->win_dim.h = 1080;
-	s->win_dim.w = 800;
+	s->win_dim.w = 1080;
+	s->win_dim.h = 800;
 	s->obj = NULL;
 	s->obj = fill_hard_sphere();
 	return (s);
@@ -75,6 +75,6 @@ void	print_scene(t_scene **s)
 	sp = (*s)->obj;
 	printf("name = %s\n", sp->name);
 	printf("inter = %f\n", sp->inter);
-	printf("%u %u %u\n", sp->rgb.r, sp->rgb.g, sp->rgb.b);
+	printf("%f %f %f\n", sp->rgb.r, sp->rgb.g, sp->rgb.b);
 }
 

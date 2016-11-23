@@ -5,39 +5,43 @@
 #                                                     +:+ +:+         +:+      #
 #    By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2016/11/10 11:58:59 by mmoullec          #+#    #+#              #
-#    Updated: 2016/11/22 19:10:35 by mmoullec         ###   ########.fr        #
+#    Created: 2016/11/22 15:22:45 by mmoullec          #+#    #+#              #
+#    Updated: 2016/11/22 15:34:47 by mmoullec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = rt_v1
-PARS = pars
-SRCS = fill_list.c\
-	   main.c\
-	   parseur.c\
-	   print_list.c\
-	   print_scene.c\
-	   get_scene_datas.c\
-	   get_scene_datas2.c\
-		test_doc.c
-SRCD = ./parseur/
-OBJ = $(SRCS:.c=.o)
+NAME= libvect.a
+CC = clang -Wall -Werror -Wextra
+OBJ = $(SRC:.c=.o)
+SRC = vect_add.c\
+vect_cos.c\
+vect_create.c\
+vect_cross.c\
+vect_dot.c\
+vect_length.c\
+vect_s_mul.c\
+vect_sub.c\
+vect_unit.c\
+print_vect.c
 
-all: $(PARS)
+all: $(NAME)
+
+$(NAME): $(OBJ)
+	@ar rc $(NAME) $? $(OBJ)
+	@ranlib $(NAME)
+	@echo $(NAME) "Created"
 
 
-
-$(PARS): $(OBJ)
-	make -C ./libft
-	clang -o $(PARS) $(OBJ) -lft -L./libft
-
-
-%.o: $(SRCD)%.c
-	$(CC) -o $@ -c $< -I. -I./libft
-
+%.o: %.c
+	@$(CC) -o $@ -c $< -I.
+	@echo $@ "OK"
 
 clean:
-	rm -rf *.o
+	/bin/rm -f $(OBJ)
 
 fclean: clean
-	rm -rf $(NAME)
+	/bin/rm -f $(NAME)
+
+re: fclean all
+
+.PHONY: all clean fclean re

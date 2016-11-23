@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/10 15:00:21 by mmoullec          #+#    #+#             */
-/*   Updated: 2016/11/21 18:49:00 by mmoullec         ###   ########.fr       */
+/*   Updated: 2016/11/22 19:53:34 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include <mlx.h>
 # include "../libft/libft.h"
+# include "../libvect/vect.h"
+# include "../libmlx/my_mlx.h"
 # define WNA1 (*e)->s->name
 # define WH1 (*e)->s->win_dim.h
 # define WW1 (*e)->s->win_dim.w
@@ -48,13 +50,6 @@ typedef struct	s_xyz
 	double		z;
 }				t_xyz;
 
-typedef struct		s_rgb
-{
-	unsigned int	r;
-	unsigned int	g;
-	unsigned int	b;
-}					t_rgb;
-
 typedef struct		s_sphere
 {
 	char			*name;
@@ -66,7 +61,7 @@ typedef struct		s_sphere
 typedef struct	s_scene
 {
 	char		*name;
-	t_xyz		cam_origin;
+	t_vect		cam_origin;
 	t_hw		win_dim;
 	t_sphere		*obj;
 }				t_scene;
@@ -74,12 +69,7 @@ typedef struct	s_scene
 typedef struct	s_e
 {
 	t_scene		*s;
-	void		*m;
-	void		*w;
-	void		*i;
-	int			sl;
-	int			bpp;
-	char		*d_a;
+	t_mlx		*mlx;
 }				t_e;
 
 
@@ -90,5 +80,10 @@ void		rec_l(t_list **obj);
 t_scene		*fill_hard_scene();
 void		print_scene(t_scene **e);
 void		mlc(t_e **e);
+
+t_vect		find_vect_dir(t_vect cam_pos);
+t_vect		find_up_vect();
+t_vect		find_right_vect();
+t_vect		find_up_left(t_vect cam_pos, t_vect upvect, t_vect c, t_vect d);
 
 #endif

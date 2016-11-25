@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/21 14:28:51 by mmoullec          #+#    #+#             */
-/*   Updated: 2016/11/22 19:53:34 by mmoullec         ###   ########.fr       */
+/*   Updated: 2016/11/25 14:01:02 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ int		main(void)
 	int i = 0;
 	e = (t_e *)malloc(sizeof(t_e));
 	e->s = fill_hard_scene();
-	print_scene(&e->s);
+//	print_scene(&e->s);
 	e->mlx = glob_init_mlx(WNA, WW, WH);
-//	mlx_loop_hook(e->m, start_rt, e);
+//	mlx_loop_hook(e->mlx->m, start_rt, e);
 	start_rt(e);
 	mlx_put_image_to_window(e->mlx->m, e->mlx->w, e->mlx->i, 0, 0);
 	mlx_hook(e->mlx->w, 2, 1L << 0, key_press, e);

@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/10 15:00:21 by mmoullec          #+#    #+#             */
-/*   Updated: 2016/11/22 19:53:34 by mmoullec         ###   ########.fr       */
+/*   Updated: 2016/11/25 18:51:55 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,20 @@ typedef struct	s_xyz
 
 typedef struct		s_sphere
 {
+	int				num;
 	char			*name;
 	double			inter;
-	t_xyz			centre;
+	t_vect			centre;
 	t_rgb			rgb;
+	struct s_sphere	*next;
 }					t_sphere;
+
+typedef struct		s_lum
+{
+	int				num;
+	t_vect			pos;
+	struct s_lum	*next;
+}					t_lum;
 
 typedef struct	s_scene
 {
@@ -64,6 +73,7 @@ typedef struct	s_scene
 	t_vect		cam_origin;
 	t_hw		win_dim;
 	t_sphere		*obj;
+	t_lum			*lum;
 }				t_scene;
 
 typedef struct	s_e
@@ -71,6 +81,13 @@ typedef struct	s_e
 	t_scene		*s;
 	t_mlx		*mlx;
 }				t_e;
+
+typedef struct	s_rend
+{
+	int			imp;
+	double		t;
+	t_rgb		r;
+}				t_rend;
 
 
 int			start_rt(t_e *e);
@@ -86,4 +103,6 @@ t_vect		find_up_vect();
 t_vect		find_right_vect();
 t_vect		find_up_left(t_vect cam_pos, t_vect upvect, t_vect c, t_vect d);
 
+
+void	gest_lum(t_e *e, t_vect ray, t_l l, t_rend rend);
 #endif

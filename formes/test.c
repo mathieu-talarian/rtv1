@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/22 16:40:33 by mmoullec          #+#    #+#             */
-/*   Updated: 2016/11/23 19:11:49 by mmoullec         ###   ########.fr       */
+/*   Updated: 2016/11/25 12:09:58 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ t_vect	find_up_vect()
 	t_vect upvect;
 
 	upvect = vect_create(0, 1, 0);
-	upvect = vect_s_mul(vect_unit(upvect), (0.8 / 2));
 	printf("\nUPVECT\n");
 	print_vect(upvect);
 	return (upvect);
@@ -36,7 +35,6 @@ t_vect	find_right_vect()
 	t_vect rightvect;
 
 	rightvect = vect_create(1, 0, 0);
-	rightvect = vect_s_mul(vect_unit(rightvect), (1.08 / 2));
 	printf("\nRIGHTVECT\n");
 	print_vect(rightvect);
 	return (rightvect);
@@ -46,6 +44,8 @@ t_vect	find_right_vect()
 t_vect	find_up_left(t_vect cam_pos, t_vect upvect, t_vect rightvect, t_vect vec_dir)
 {
 	t_vect upleft;
+	upvect = vect_s_mul(vect_unit(upvect), (0.8 / 2));
+	rightvect = vect_s_mul(vect_unit(rightvect), (1.08 / 2));
 	t_vect tmp = vect_add(vec_dir, upvect);
 	tmp = vect_sub(tmp, rightvect);
 

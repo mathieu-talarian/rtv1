@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/10 18:31:12 by mmoullec          #+#    #+#             */
-/*   Updated: 2016/11/25 18:59:47 by mmoullec         ###   ########.fr       */
+/*   Updated: 2016/11/26 16:25:17 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ t_sphere	*fill_hard_sphere()
 	tmp = (t_sphere *)malloc(sizeof(t_sphere));
 	tmp->num = 2;
 	tmp->name = ft_strdup("sphere2");
-	tmp->inter = 2;
+	tmp->inter = 1;
 	//	printf("1");
-	tmp->centre.x = 1;
-	tmp->centre.y = 1;
+	tmp->centre.x = 0;
+	tmp->centre.y = 2;
 	tmp->centre.z = 0;
 	tmp->rgb.r = 124;
 	tmp->rgb.g = 20;
@@ -36,11 +36,11 @@ t_sphere	*fill_hard_sphere2()
 	tmp = (t_sphere *)malloc(sizeof(t_sphere));
 	tmp->num = 1;
 	tmp->name = ft_strdup("sphere");
-	tmp->inter = 2;
+	tmp->inter = 1;
 	//	printf("1");
-	tmp->centre.x = -1;
-	tmp->centre.y = -1;
-	tmp->centre.z = 1;
+	tmp->centre.x = 1;
+	tmp->centre.y = 1;
+	tmp->centre.z = 0;
 	tmp->rgb.r = 2;
 	tmp->rgb.g = 190;
 	tmp->rgb.b = 200;
@@ -54,11 +54,11 @@ t_sphere	*fill_hard_sphere3()
 	tmp = (t_sphere *)malloc(sizeof(t_sphere));
 	tmp->num = 1;
 	tmp->name = ft_strdup("sphere");
-	tmp->inter = 2;
+	tmp->inter = 1;
 	//	printf("1");
-	tmp->centre.x = 1;
-	tmp->centre.y = -1;
-	tmp->centre.z = 2;
+	tmp->centre.x = 2;
+	tmp->centre.y = 0;
+	tmp->centre.z = 0;
 	tmp->rgb.r = 100;
 	tmp->rgb.g = 10;
 	tmp->rgb.b = 200;
@@ -87,8 +87,8 @@ t_lum	*fill_hard_lum()
 	l = (t_lum *)malloc(sizeof(t_lum));
 	l->num = 1;
 	l->pos.x = -10;
-	l->pos.y = -10;
-	l->pos.z = -10;
+	l->pos.y = 10;
+	l->pos.z = -6;
 	l->next = NULL;
 	return (l);
 }

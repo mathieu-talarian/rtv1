@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/10 17:03:30 by mmoullec          #+#    #+#             */
-/*   Updated: 2016/11/25 18:59:46 by mmoullec         ###   ########.fr       */
+/*   Updated: 2016/11/26 16:25:16 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,11 +82,13 @@ t_rend	to_draw_sphere(t_sphere *s, t_vect cam_origin, t_vect r, t_l l)
 		{
 			u.t = (-b / 2*a);
 			u.r = s->rgb;
+			u.centre = s->centre;
 		}
 		else
 		{
 			u.t = min(((-b + sqrt(det)) / 2 * a), ((-b - sqrt(det)) / 2 * a));
 			u.r = s->rgb;
+			u.centre = s->centre;
 		}
 		return (u);
 	}

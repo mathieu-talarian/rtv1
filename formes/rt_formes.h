@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/10 15:00:21 by mmoullec          #+#    #+#             */
-/*   Updated: 2016/11/25 18:51:55 by mmoullec         ###   ########.fr       */
+/*   Updated: 2016/11/26 14:00:18 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ typedef struct	s_rend
 	int			imp;
 	double		t;
 	t_rgb		r;
+	t_vect		centre;
 }				t_rend;
 
 

@@ -6,7 +6,7 @@
 #    By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/22 15:22:45 by mmoullec          #+#    #+#              #
-#    Updated: 2016/11/22 15:34:47 by mmoullec         ###   ########.fr        #
+#    Updated: 2016/11/26 14:30:19 by mmoullec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ vect_length.c\
 vect_s_mul.c\
 vect_sub.c\
 vect_unit.c\
-print_vect.c
+print_vect.c\
+pr_vect.c
 
 all: $(NAME)
 

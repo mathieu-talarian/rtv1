@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/19 16:12:22 by mmoullec          #+#    #+#             */
-/*   Updated: 2016/11/15 20:59:28 by mmoullec         ###   ########.fr       */
+/*   Updated: 2016/12/01 16:56:44 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,14 @@ typedef struct			s_list
 	size_t			content_size;
 	struct s_list	*next;
 }						t_list;
+
+typedef struct			s_list_n
+{
+	char			*name;
+	void			*content;
+	size_t			content_size;
+	struct s_list_n	*next;
+}						t_list_n;
 
 typedef struct			s_vector
 {
@@ -118,6 +126,11 @@ void					ft_lstadd(t_list **alst, t_list *new);
 void					ft_lstadd_s(t_list **alst, t_list *new);
 void					ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list					*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
+
+void					ft_lstadd_n(t_list_n **alst, t_list_n *new);
+t_list_n				*ft_lstnew_n(const char *name, const void *content,\
+		size_t content_size);
+
 
 int						ft_char_cmp(char a, char b);
 int						ft_count_words(const char *s, char c, \

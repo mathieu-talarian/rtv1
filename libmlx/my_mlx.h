@@ -6,16 +6,16 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/22 18:29:41 by mmoullec          #+#    #+#             */
-/*   Updated: 2016/11/22 19:25:30 by mmoullec         ###   ########.fr       */
+/*   Updated: 2016/12/01 17:44:22 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MY_MLX_H
 # define MY_MLX_H
 
-#include "mlx.h"
-#include <math.h>
-#include <stdlib.h>
+# include "mlx.h"
+# include <math.h>
+# include <stdlib.h>
 
 typedef struct		s_l
 {
@@ -68,10 +68,14 @@ typedef struct		s_crgb
 	double			ff;
 }					t_crgb;
 
-
 void				put_color_to_pixel(t_mlx *mlx, t_l l, t_rgb rgb);
 t_rgb				hsv_to_rgb(t_hsv hsv);
 t_hsv				rgb_to_hsv(t_rgb rgb);
 t_mlx				*glob_init_mlx(char *n, int w, int h);
+
+t_rgb				rgb_mult(t_rgb a, t_rgb b);
+t_rgb				rgb_add(t_rgb a, t_rgb b);
+t_rgb				rgb_create(int a, int b, int c);
+t_rgb				rgb_0(void);
 
 #endif

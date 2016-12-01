@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/10 15:00:21 by mmoullec          #+#    #+#             */
-/*   Updated: 2016/11/26 14:00:18 by mmoullec         ###   ########.fr       */
+/*   Updated: 2016/12/01 20:02:39 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,18 +52,26 @@ typedef struct	s_xyz
 
 typedef struct		s_sphere
 {
-	int				num;
 	char			*name;
-	double			inter;
+	double			rayon;
 	t_vect			centre;
 	t_rgb			rgb;
-	struct s_sphere	*next;
 }					t_sphere;
+
+typedef struct		s_plan
+{
+	char			*name;
+	t_vect			pt;
+	t_vect			norm;
+	t_rgb			color;
+}					t_plan;
+
 
 typedef struct		s_lum
 {
 	int				num;
 	t_vect			pos;
+	t_rgb			Al;
 	struct s_lum	*next;
 }					t_lum;
 
@@ -72,7 +80,7 @@ typedef struct	s_scene
 	char		*name;
 	t_vect		cam_origin;
 	t_hw		win_dim;
-	t_sphere		*obj;
+	t_list_n		*obj;
 	t_lum			*lum;
 }				t_scene;
 
@@ -84,10 +92,12 @@ typedef struct	s_e
 
 typedef struct	s_rend
 {
+	int			type;
 	int			imp;
 	double		t;
 	t_rgb		r;
 	t_vect		centre;
+	t_vect		norm;
 }				t_rend;
 
 
@@ -106,4 +116,6 @@ t_vect		find_up_left(t_vect cam_pos, t_vect upvect, t_vect c, t_vect d);
 
 
 void	gest_lum(t_e *e, t_vect ray, t_l l, t_rend rend);
+t_rend		to_draw_sphere(t_sphere *s, t_vect cam_origin, t_vect r);
+
 #endif

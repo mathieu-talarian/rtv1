@@ -6,37 +6,89 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/25 18:23:11 by mmoullec          #+#    #+#             */
-/*   Updated: 2016/11/26 16:25:15 by mmoullec         ###   ########.fr       */
+/*   Updated: 2016/12/01 22:23:19 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt_formes.h"
 
-void	gest_lum(t_e *e, t_vect ray, t_l l, t_rend rend)
+t_rgb		get_lambert_term_cercle(t_e *e, t_vect ray, t_rend rend)
 {
+	t_rgb	ret;
 	t_vect pt_cerle;
 	pt_cerle = vect_s_mul(ray, rend.t);
 	pt_cerle = vect_add(pt_cerle, e->s->cam_origin);
-//	pr_vect(pt_cerle, "PT CERCLE");
+	//	pr_vect(pt_cerle, "PT CERCLE");
 
 	t_vect vc_lum_cercle;
 
 	vc_lum_cercle = vect_unit(vect_sub(e->s->lum->pos, pt_cerle));
-//	pr_vect(vc_lum_cercle, "VECT DE LA LUM VERS PT");
+	//	t = check_if_coll(&e->s->obj, vc_lum_cercle, e->s->cam_origin);
+
 
 	t_vect vc_cercle_centre = vect_unit(vect_sub(pt_cerle, rend.centre));
-//	pr_vect(vc_cercle_centre, "VECT NORM DU PT DE LA SPHERE VERS LE CENTRE");
 
 	double dot_product;
 
 	dot_product = vect_cos(vc_cercle_centre, vc_lum_cercle);
-	if (dot_product <= 0)
-	{}//put_color_to_pixel(e->mlx, l, rend.r);
-	else
+	if (dot_product >= 0)
 	{
 		rend.r.r *= dot_product;
 		rend.r.g *= dot_product;
 		rend.r.b *= dot_product;
-		put_color_to_pixel(e->mlx, l, rend.r);
 	}
+	else
+		rend.r = rgb_0();
+	return (rend.r);
+}
+
+t_rgb	get_lambert_term_plane(t_e *e, t_vect ray, t_rend rend)
+{
+	t_vect pt_plan;
+
+	pt_plan = vect_s_mul(ray, rend.t);
+	pt_plan = vect_add(pt_plan, e->s->cam_origin);
+
+	t_vect vc_lum_plan = vect_unit(vect_sub(e->s->lum->pos, pt_plan));
+	t_vect vc_plan = vect_unit(vect_sub(pt_plan, rend.centre));
+
+	t_vect vc_cross = vect_cross(rend.norm, vc_plan);
+	double dot_product;
+	dot_product = vect_cos(vc_lum_plan, rend.norm);
+	if (acos(dot_product) >= 0)
+	{
+		if (dot_product > 0)
+			printf("lolo");
+		rend.r.r *= dot_product;
+		rend.r.g *= dot_product;
+		rend.r.b *= dot_product;
+	}
+	else
+		rend.r = rgb_0();
+	return (rend.r);
+}
+
+t_rgb	get_ambient(t_rend rend, t_rgb Al)
+{
+	t_rgb ret;
+	t_rgb As;
+
+	As.r = 0.1;
+	As.b = 0.1;
+	As.g = 0.1;
+	ret = rgb_add(rgb_mult(rend.r, Al), rgb_mult(As, rend.r));
+	return (ret);
+}
+
+void	gest_lum(t_e *e, t_vect ray, t_l l, t_rend rend)
+{
+	t_rgb lambert_term;
+	t_rgb Ia;
+
+	//	Ia = get_ambient(rend, e->s->lum->Al);
+	if (rend.type == 0)
+		lambert_term = get_lambert_term_cercle(e, ray, rend);
+	else if (rend.type == 1)
+		lambert_term =  get_lambert_term_plane(e, ray, rend);
+	put_color_to_pixel(e->mlx, l, lambert_term);
 }

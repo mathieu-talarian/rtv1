@@ -6,7 +6,7 @@
 #    By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 18:46:08 by mmoullec          #+#    #+#              #
-#    Updated: 2016/11/22 19:10:34 by mmoullec         ###   ########.fr        #
+#    Updated: 2016/12/01 16:58:38 by mmoullec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -84,7 +84,9 @@ ft_len_nb.c\
 ft_lstadd_s.c\
 ft_freeone.c\
 ft_atof.c\
-ft_tab_clr.c
+ft_tab_clr.c\
+ft_lstadd_n.c\
+ft_lstnew_n.c
 
 
 OBJ = $(SRC:.c=.o)

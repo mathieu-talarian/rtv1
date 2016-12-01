@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/10 17:03:30 by mmoullec          #+#    #+#             */
-/*   Updated: 2016/11/26 16:25:16 by mmoullec         ###   ########.fr       */
+/*   Updated: 2016/12/01 22:23:22 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ double		carre(double a)
 double	return_a(t_vect r)
 {
 	double a;
-	
+
 	a = (r.x * r.x) + (r.y * r.y) + (r.z * r.z);
 	return (a);
 }
@@ -62,13 +62,12 @@ double	return_c(double inter, t_vect sp, t_vect cam)
 	return (c);
 }
 
-t_rend	to_draw_sphere(t_sphere *s, t_vect cam_origin, t_vect r, t_l l)
+t_rend	to_draw_sphere(t_sphere *s, t_vect cam_origin, t_vect r)
 {
 	t_rend u;
 	double a = return_a(r);
 	double b = return_b(s->centre, r, cam_origin);
-	double c = return_c(s->inter, s->centre, cam_origin);
-	double t;
+	double c = return_c(s->rayon, s->centre, cam_origin);
 	double det = (b * b) - (4.0 * a * c);
 	if (det < 0.0)
 	{
@@ -78,6 +77,7 @@ t_rend	to_draw_sphere(t_sphere *s, t_vect cam_origin, t_vect r, t_l l)
 	else
 	{
 		u.imp = 1;
+		u.type = 0;
 		if (det == 0.0)
 		{
 			u.t = (-b / 2*a);
@@ -94,62 +94,71 @@ t_rend	to_draw_sphere(t_sphere *s, t_vect cam_origin, t_vect r, t_l l)
 	}
 }
 
-void	print_obj(t_sphere **obj)
+t_rend	to_draw_plane(t_plan *p, t_vect cam, t_vect r)
 {
-	t_sphere *o;
-	o = *obj;
-	while (o)
-	{
-		printf("SPEHERE NUM = %d\n", o->num);
-		printf("%s\n", o->name);
-		printf("inter = %f\n", o->inter);
-		printf("%f %f %f\n", o->rgb.r, o->rgb.g, o->rgb.b);
-		o = o->next;
-	}
+	t_rend	u;
+	double a;
+	double b;
+	double c;
+
+	u.imp = 1;
+	u.type = 1;
+	u.r = p->color;
+	u.centre = p->pt;
+	u.norm = p->norm;
+	a = p->norm.x * (cam.x - p->pt.x);
+	b = p->norm.y * (cam.y - p->pt.y);
+	c = p->norm.z * (cam.z - p->pt.z);
+
+	u.t = -(a + b + c) / (p->norm.x * r.x + p->norm.y * r.y + p->norm.z * r.z);
+
+	return (u);
 }
 
-t_rgb rgb_0()
+t_rend		ret_tmp(t_list_n *o, t_e *e, t_vect ray)
 {
-	t_rgb r;
-
-	r.r = 0;
-	r.g = 0;
-	r.b = 0;
-	return (r);
+	t_rend tmp;
+	if (!ft_strcmp(o->name, "sphere"))
+		tmp = to_draw_sphere(o->content, e->s->cam_origin, ray);
+	else if (!ft_strcmp(o->name, "plan"))
+		tmp = to_draw_plane(o->content, e->s->cam_origin, ray);
+	return (tmp);
 }
 
-void	all_obj(t_e *e, t_sphere **obj, t_l l, t_vect ray)
+void	all_obj(t_e *e, t_list_n **obj, t_l l, t_vect ray)
 {
-	t_sphere *o;
+	static int i = 0;
+	t_rend	tmp;
+	t_list_n *o;
 	t_rend		rend;
-	t_rend		tmp;
 	o = *obj;
 
 	rend.t = -1;
 	rend.r = rgb_0();
 	while(o)
 	{
-		tmp = to_draw_sphere(o, e->s->cam_origin, ray, l);
-		if (tmp.imp == 1)
+		tmp = ret_tmp(o, e, ray);
+		if (rend.t == -1)
+			rend = tmp;
+		else
 		{
-			if (rend.t == -1)
+			if (tmp.t < rend.t)
 				rend = tmp;
-			else
-			{
-				if (tmp.t < rend.t)
-					rend = tmp;
-			}
 		}
 		o = o->next;
 	}
+	if (i != l.y)
+	{
+		printf("%f\n", rend.t);
+		i = l.y;
+	}
 	gest_lum(e, ray, l, rend);
-//	put_color_to_pixel(e->mlx, l, rend.r);
+	//	put_color_to_pixel(e->mlx, l, rend.r);
 }
 
 
 int		start_rt(t_e *e)
 {
-	print_obj(&e->s->obj);
 	t_rgb i;
 	i.r = 100;
 	i.g = 123;

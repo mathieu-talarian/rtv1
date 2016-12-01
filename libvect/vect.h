@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/22 14:54:41 by mmoullec          #+#    #+#             */
-/*   Updated: 2016/11/22 19:53:35 by mmoullec         ###   ########.fr       */
+/*   Updated: 2016/11/26 14:29:59 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,5 @@ double			vect_length(t_vect a);
 double			vect_cos(t_vect a, t_vect b);
 
 void			print_vect(t_vect a);
+void			pr_vect(t_vect v, char *str);
 #endif

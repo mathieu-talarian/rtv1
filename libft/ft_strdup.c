@@ -15,10 +15,13 @@
 char	*ft_strdup(const char *str)
 {
 	char	*dest;
+	int		len;
 
-	if (!(dest = ft_strnew(ft_strlen(str))))
+	dest = NULL;
+	len = ft_strlen(str) + 1;
+	if (!(dest = (char *)malloc(sizeof(char) * len)))
 		return (NULL);
 	if (!str)
 		return (NULL);
-	return (ft_strcpy(dest, str));
+	return (ft_memcpy(dest, str, len));
 }

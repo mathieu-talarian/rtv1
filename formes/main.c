@@ -115,9 +115,9 @@ t_scene		*fill_hard_scene(void)
 	s->win_dim.w = 1080;
 	s->win_dim.h = 800;
 	s->obj = NULL;
-	ft_lstadd_n(&s->obj, ft_lstnew_n("sphere", fill_hard_sphere(), sizeof(t_sphere)));
-	ft_lstadd_n(&s->obj, ft_lstnew_n("plan", fill_hard_plan(), sizeof(t_plan)));
-	ft_lstadd_n(&s->obj, ft_lstnew_n("plan", fill_hard_plan2(), sizeof(t_plan)));
+	ft_lstadd_n(&s->obj, ft_lstnew_n("sphere", fill_hard_sphere(), sizeof(t_sphere *)));
+//	ft_lstadd_n(&s->obj, ft_lstnew_n("plan", fill_hard_plan(), sizeof(t_plan)));
+//	ft_lstadd_n(&s->obj, ft_lstnew_n("plan", fill_hard_plan2(), sizeof(t_plan)));
 //	s->obj->next = fill_hard_sphere2();
 //	s->obj->next->next = fill_hard_sphere3();
 	s->lum = NULL;

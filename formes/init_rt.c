@@ -25,6 +25,7 @@ int		main(void)
 
 	int i = 0;
 	e = (t_e *)malloc(sizeof(t_e));
+	e->s = NULL;
 	e->s = fill_hard_scene();
 	print_scene(&e->s);
 	e->mlx = glob_init_mlx(WNA, WW, WH);

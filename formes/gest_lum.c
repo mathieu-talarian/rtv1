@@ -6,13 +6,13 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/25 18:23:11 by mmoullec          #+#    #+#             */
-/*   Updated: 2016/12/05 15:46:23 by mmoullec         ###   ########.fr       */
+/*   Updated: 2016/12/05 19:24:19 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt_formes.h"
 
-t_rgb		get_lambert_term_cercle(t_e *e, t_vect ray, t_rend rend)
+t_rgb		get_lambert_term_cercle(t_e *e, t_vect ray, t_rend rend, t_l l)
 {
 	t_rgb	ret;
 	t_vect pt_cerle;
@@ -78,6 +78,7 @@ t_rgb	get_ambient(t_rend rend, t_rgb Al)
 	return (ret);
 }
 
+
 void	gest_lum(t_e *e, t_vect ray, t_l l, t_rend rend)
 {
 	t_rgb lambert_term;
@@ -85,8 +86,12 @@ void	gest_lum(t_e *e, t_vect ray, t_l l, t_rend rend)
 
 	//	Ia = get_ambient(rend, e->s->lum->Al);
 	if (rend.type == 0)
-		lambert_term = get_lambert_term_cercle(e, ray, rend);
+	{
+//		new_start(e, ray, rend, l);
+		lambert_term = get_lambert_term_cercle(e, ray, rend, l);
+		put_color_to_pixel(e->mlx, l, lambert_term);
+	}
 	else if (rend.type == 1)
 		lambert_term =  get_lambert_term_plane(e, ray, rend);
-	put_color_to_pixel(e->mlx, l, lambert_term);
+//	put_color_to_pixel(e->mlx, l, lambert_term);
 }

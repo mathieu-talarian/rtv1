@@ -6,14 +6,33 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/21 14:28:51 by mmoullec          #+#    #+#             */
-/*   Updated: 2016/12/05 15:46:23 by mmoullec         ###   ########.fr       */
+/*   Updated: 2016/12/05 17:20:53 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt_formes.h"
 
+void	mod(t_lum **l)
+{
+	printf("cc");
+	(*l)->pos.x++;
+	(*l)->pos.y++;
+}
+
+void	mod2(t_lum **l)
+{
+	printf("cc");
+	(*l)->pos.x--;
+	(*l)->pos.y--;
+}
+
 int		key_press(int keycode, t_e *e)
 {
+	printf("%d\n", keycode);
+	if (keycode == 124)
+		mod (&e->s->lum);
+	if (keycode == 123)
+		mod2 (&e->s->lum);
 	if (keycode == 53)
 		exit (0);
 	return (0);
@@ -27,11 +46,10 @@ int		main(void)
 	e = (t_e *)malloc(sizeof(t_e));
 	e->s = NULL;
 	e->s = fill_hard_scene();
-	print_scene(&e->s);
+	//print_scene(&e->s);
 	e->mlx = glob_init_mlx(WNA, WW, WH);
-//	mlx_loop_hook(e->mlx->m, start_rt, e);
-	start_rt(e);
-	mlx_put_image_to_window(e->mlx->m, e->mlx->w, e->mlx->i, 0, 0);
+	mlx_loop_hook(e->mlx->m, start_rt, e);
+//	start_rt(e);
 	mlx_hook(e->mlx->w, 2, 1L << 0, key_press, e);
 	mlx_loop(e->mlx->m);
 }

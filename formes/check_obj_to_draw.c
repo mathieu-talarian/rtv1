@@ -1,30 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   check_obj_to_draw.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/19 16:35:44 by mmoullec          #+#    #+#             */
-/*   Updated: 2016/12/05 12:45:56 by mmoullec         ###   ########.fr       */
+/*   Created: 2016/12/05 15:53:09 by mmoullec          #+#    #+#             */
+/*   Updated: 2016/12/05 19:16:10 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "rt_formes.h"
 
-void	*ft_memcpy(void *d, const void *s, size_t n)
+t_rend		check_obj_to_draw(t_e *e, t_list_n **obj, t_vect ray)
 {
-	char		*dest;
-	const char	*src;
-	size_t		i;
+	t_list_n *o;
+	t_rend		rend;
+	t_rend		tmp;
 
-	i = 0;
-	dest = (char*)d;
-	src = (char*)s;
-	while (i < n)
+	rend.t = -1;
+	rend.r = rgb_0();
+	o = *obj;
+	while (o)
 	{
-		dest[i] = src[i];
-		i++;
+		tmp = ret_tmp(o, e, ray);
+		if (tmp.imp == 1)
+		{
+			if (rend.t == -1)
+				rend = tmp;
+			else
+			{
+				if (tmp.t < rend.t)
+					rend = tmp;
+			}
+		}
+		o = o->next;
 	}
-	return (d);
+	return (rend);
 }

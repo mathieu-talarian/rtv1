@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/10 18:31:12 by mmoullec          #+#    #+#             */
-/*   Updated: 2016/12/05 15:46:22 by mmoullec         ###   ########.fr       */
+/*   Updated: 2016/12/05 17:20:55 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ t_sphere	*fill_hard_sphere2()
 	t_sphere *tmp;
 	tmp = (t_sphere *)malloc(sizeof(t_sphere));
 	tmp->name = ft_strdup("sphere");
-	tmp->rayon = 2;
-	tmp->centre.x = 1;
+	tmp->rayon = 4;
+	tmp->centre.x = 0;
 	tmp->centre.y = 1;
-	tmp->centre.z = 0;
+tmp->centre.z = 6;
 	tmp->rgb.r = 2;
 	tmp->rgb.g = 190;
 	tmp->rgb.b = 200;

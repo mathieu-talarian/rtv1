@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/22 16:40:33 by mmoullec          #+#    #+#             */
-/*   Updated: 2016/11/25 12:09:58 by mmoullec         ###   ########.fr       */
+/*   Updated: 2016/12/05 16:10:32 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 t_vect	find_vect_dir(t_vect cam_pos)
 {
 	t_vect vect_dir = vect_unit(vect_sub(vect_create(0, 0, 0), cam_pos));
-	printf("VECT DIR\n");
-	print_vect(vect_dir);
+//	printf("VECT DIR\n");
+//	print_vect(vect_dir);
 	return (vect_dir);
 }
 
@@ -25,8 +25,8 @@ t_vect	find_up_vect()
 	t_vect upvect;
 
 	upvect = vect_create(0, 1, 0);
-	printf("\nUPVECT\n");
-	print_vect(upvect);
+//	printf("\nUPVECT\n");
+//	print_vect(upvect);
 	return (upvect);
 }
 
@@ -35,8 +35,8 @@ t_vect	find_right_vect()
 	t_vect rightvect;
 
 	rightvect = vect_create(1, 0, 0);
-	printf("\nRIGHTVECT\n");
-	print_vect(rightvect);
+//	printf("\nRIGHTVECT\n");
+//	print_vect(rightvect);
 	return (rightvect);
 
 }
@@ -50,8 +50,8 @@ t_vect	find_up_left(t_vect cam_pos, t_vect upvect, t_vect rightvect, t_vect vec_
 	tmp = vect_sub(tmp, rightvect);
 
 	upleft = vect_add(cam_pos, tmp);
-	printf("\nVECT UP LEFT\n");
-	print_vect(upleft);
+//	printf("\nVECT UP LEFT\n");
+//	print_vect(upleft);
 	return (upleft);
 }
 

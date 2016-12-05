@@ -1,30 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   shadow.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/19 16:35:44 by mmoullec          #+#    #+#             */
-/*   Updated: 2016/12/05 12:45:56 by mmoullec         ###   ########.fr       */
+/*   Created: 2016/12/05 17:28:53 by mmoullec          #+#    #+#             */
+/*   Updated: 2016/12/05 18:17:48 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "rt_formes.h"
 
-void	*ft_memcpy(void *d, const void *s, size_t n)
+double		if_shadow(t_list_n **obj, t_vect vc_lum_cercle, t_vect pt_cercle)
 {
-	char		*dest;
-	const char	*src;
-	size_t		i;
+	t_list_n *o;
+	t_rend		rend;
+	t_rend		tmp;
 
-	i = 0;
-	dest = (char*)d;
-	src = (char*)s;
-	while (i < n)
+	rend.t = -1;
+	rend.r = rgb_0();
+	o = *obj;
+	while (o)
 	{
-		dest[i] = src[i];
-		i++;
+		tmp = to_draw_sphere(o->content, pt_cercle, vc_lum_cercle);
+		if (rend.t == -1)
+			rend = tmp;
+		else
+		{
+			if (tmp.t < rend.t)
+				rend = tmp;
+		}
+		o = o->next;
 	}
-	return (d);
+	return (rend.t);
 }

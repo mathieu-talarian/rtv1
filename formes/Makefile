@@ -6,7 +6,10 @@ SRCS=gest_lum.c\
 	main.c\
 	start_rt.c\
 	init_rt.c\
-	test.c
+	test.c\
+	shadow.c\
+	new_start.c\
+	check_obj_to_draw.c
 
 OBJ = $(SRCS:.c=.o)
 

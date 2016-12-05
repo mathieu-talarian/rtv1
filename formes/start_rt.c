@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/10 17:03:30 by mmoullec          #+#    #+#             */
-/*   Updated: 2016/12/05 15:46:21 by mmoullec         ###   ########.fr       */
+/*   Updated: 2016/12/05 19:20:51 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,34 +137,33 @@ void	rend_cpy(t_rend *a, t_rend b)
 
 void	all_obj(t_e *e, t_list_n **obj, t_l l, t_vect ray)
 {
-	t_rend	tmp;
-	t_list_n *o;
 	t_rend		rend;
-	o = *obj;
 
-	rend.imp = 0;
-	rend.t = -1;
-	rend.r = rgb_0();
-	while(o)
+	rend = check_obj_to_draw(e, obj, ray);
+	gest_lum(e, ray, l, rend);
+	//	put_color_to_pixel(e->mlx, l, rend.r);
+}
+
+void	put_color_to_black(t_e *e)
+{
+	t_l l;
+	t_rgb black;
+	black.r = 0;
+	black.g = 0;
+	black.b = 0;
+	l.y = -1;
+	while (++l.y < WH)
 	{
-		tmp = ret_tmp(o, e, ray);
-		if (rend.t == -1)
-			rend_cpy(&rend, tmp);
-		else
-		{
-			if (tmp.t > rend.t)
-				rend_cpy(&rend, tmp);
-		}
-		o = o->next;
+		l.x = -1;
+		while (++l.x < WW)
+			put_color_to_pixel(e->mlx, l, black);
 	}
-	if (rend.imp == 1)
-		gest_lum(e, ray, l, rend);
-//	put_color_to_pixel(e->mlx, l, rend.r);
 }
 
 
 int		start_rt(t_e *e)
 {
+	put_color_to_black(e);
 	t_rgb i;
 	i.r = 100;
 	i.g = 123;
@@ -192,5 +191,6 @@ int		start_rt(t_e *e)
 			all_obj(e, &e->s->obj, l, rayon);
 		}
 	}
+	mlx_put_image_to_window(e->mlx->m, e->mlx->w, e->mlx->i, 0, 0);
 	return (1);
 }

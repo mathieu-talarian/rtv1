@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/10 15:00:21 by mmoullec          #+#    #+#             */
-/*   Updated: 2016/12/01 20:02:39 by mmoullec         ###   ########.fr       */
+/*   Updated: 2016/12/05 13:19:19 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,5 +117,6 @@ t_vect		find_up_left(t_vect cam_pos, t_vect upvect, t_vect c, t_vect d);
 
 void	gest_lum(t_e *e, t_vect ray, t_l l, t_rend rend);
 t_rend		to_draw_sphere(t_sphere *s, t_vect cam_origin, t_vect r);
+
 
 #endif

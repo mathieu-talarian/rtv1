@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/10 17:03:30 by mmoullec          #+#    #+#             */
-/*   Updated: 2016/12/01 22:23:22 by mmoullec         ###   ########.fr       */
+/*   Updated: 2016/12/05 15:46:21 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,41 +119,47 @@ t_rend		ret_tmp(t_list_n *o, t_e *e, t_vect ray)
 {
 	t_rend tmp;
 	if (!ft_strcmp(o->name, "sphere"))
-		tmp = to_draw_sphere(o->content, e->s->cam_origin, ray);
+		return (tmp = to_draw_sphere(o->content, e->s->cam_origin, ray));
 	else if (!ft_strcmp(o->name, "plan"))
 		tmp = to_draw_plane(o->content, e->s->cam_origin, ray);
 	return (tmp);
 }
 
+void	rend_cpy(t_rend *a, t_rend b)
+{
+	a->type = b.type;
+	a->imp = b.imp;
+	a->t = b.t;
+	a->r = b.r;
+	a->centre = b.centre;
+	a->norm = b.norm;
+}
+
 void	all_obj(t_e *e, t_list_n **obj, t_l l, t_vect ray)
 {
-	static int i = 0;
 	t_rend	tmp;
 	t_list_n *o;
 	t_rend		rend;
 	o = *obj;
 
+	rend.imp = 0;
 	rend.t = -1;
 	rend.r = rgb_0();
 	while(o)
 	{
 		tmp = ret_tmp(o, e, ray);
 		if (rend.t == -1)
-			rend = tmp;
+			rend_cpy(&rend, tmp);
 		else
 		{
-			if (tmp.t < rend.t)
-				rend = tmp;
+			if (tmp.t > rend.t)
+				rend_cpy(&rend, tmp);
 		}
 		o = o->next;
 	}
-	if (i != l.y)
-	{
-		printf("%f\n", rend.t);
-		i = l.y;
-	}
-	gest_lum(e, ray, l, rend);
-	//	put_color_to_pixel(e->mlx, l, rend.r);
+	if (rend.imp == 1)
+		gest_lum(e, ray, l, rend);
+//	put_color_to_pixel(e->mlx, l, rend.r);
 }
 
 

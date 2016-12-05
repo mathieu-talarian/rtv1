@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/25 18:23:11 by mmoullec          #+#    #+#             */
-/*   Updated: 2016/12/01 22:23:19 by mmoullec         ###   ########.fr       */
+/*   Updated: 2016/12/05 15:46:23 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,8 @@ t_rgb	get_lambert_term_plane(t_e *e, t_vect ray, t_rend rend)
 	t_vect vc_cross = vect_cross(rend.norm, vc_plan);
 	double dot_product;
 	dot_product = vect_cos(vc_lum_plan, rend.norm);
-	if (acos(dot_product) >= 0)
+	if (dot_product >= 0)
 	{
-		if (dot_product > 0)
-			printf("lolo");
 		rend.r.r *= dot_product;
 		rend.r.g *= dot_product;
 		rend.r.b *= dot_product;

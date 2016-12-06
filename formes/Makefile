@@ -27,7 +27,9 @@ clean:
 fclean: clean
 	/bin/rm -f $(NAME)
 
-run: all
+exec:
 	./$(NAME)
+
+run: all exec fclean
 
 re: fclean all

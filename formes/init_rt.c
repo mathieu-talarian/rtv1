@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/21 14:28:51 by mmoullec          #+#    #+#             */
-/*   Updated: 2016/12/05 17:20:53 by mmoullec         ###   ########.fr       */
+/*   Updated: 2016/12/06 12:50:55 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,12 @@
 
 void	mod(t_lum **l)
 {
-	printf("cc");
 	(*l)->pos.x++;
 	(*l)->pos.y++;
 }
 
 void	mod2(t_lum **l)
 {
-	printf("cc");
 	(*l)->pos.x--;
 	(*l)->pos.y--;
 }
@@ -29,6 +27,14 @@ void	mod2(t_lum **l)
 int		key_press(int keycode, t_e *e)
 {
 	printf("%d\n", keycode);
+	if (keycode == 13)
+		e->s->cam_origin.x++;
+	if (keycode == 1)
+		e->s->cam_origin.x--;
+	if (keycode == 0)
+		e->s->cam_origin.y--;
+	if (keycode == 2)
+		e->s->cam_origin.y++;
 	if (keycode == 124)
 		mod (&e->s->lum);
 	if (keycode == 123)

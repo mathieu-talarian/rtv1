@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/10 18:31:12 by mmoullec          #+#    #+#             */
-/*   Updated: 2016/12/05 17:20:55 by mmoullec         ###   ########.fr       */
+/*   Updated: 2016/12/06 12:48:44 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ t_sphere	*fill_hard_sphere()
 	tmp = (t_sphere *)malloc(sizeof(t_sphere));
 	tmp->name = ft_strdup("sphere");
 	tmp->rayon = 2;
-	tmp->centre.x = -1;
-	tmp->centre.y = -1;
+	tmp->centre.x = 1;
+	tmp->centre.y = 0;
 	tmp->centre.z = 0;
 	tmp->rgb.r = 124;
 	tmp->rgb.g = 20;
@@ -32,10 +32,10 @@ t_sphere	*fill_hard_sphere2()
 	t_sphere *tmp;
 	tmp = (t_sphere *)malloc(sizeof(t_sphere));
 	tmp->name = ft_strdup("sphere");
-	tmp->rayon = 4;
-	tmp->centre.x = 0;
-	tmp->centre.y = 1;
-tmp->centre.z = 6;
+	tmp->rayon = 2;
+	tmp->centre.x = -1;
+	tmp->centre.y = 0;
+	tmp->centre.z = 0;
 	tmp->rgb.r = 2;
 	tmp->rgb.g = 190;
 	tmp->rgb.b = 200;
@@ -62,9 +62,9 @@ t_plan		*fill_hard_plan2()
 
 	p = (t_plan *)malloc(sizeof(t_plan));
 	p->name = ft_strdup("plan");
-	p->pt = vect_create(0, 0, -1);
-	p->norm = vect_create(1, 4, 4);
-	p->color = rgb_create(0, 255, 255);
+	p->pt = vect_create(0, 1, 0);
+	p->norm = vect_create(0, 0.1, 1);
+	p->color = rgb_create(255, 255, 255);
 	return (p);
 }
 
@@ -74,8 +74,8 @@ t_plan		*fill_hard_plan()
 
 	p = (t_plan *)malloc(sizeof(t_plan));
 	p->name = ft_strdup("plan");
-	p->pt = vect_create(0, -2, 10);
-	p->norm = vect_create(1, 1, 0);
+	p->pt = vect_create(0, 1, -1.5);
+	p->norm = vect_create(0, 0, -2);
 	p->color = rgb_create(200, 120, 130);
 	return (p);
 }
@@ -118,7 +118,7 @@ t_scene		*fill_hard_scene(void)
 	s->obj = NULL;
 	ft_lstadd_n(&s->obj, ft_lstnew_n("sphere", fill_hard_sphere(), sizeof(t_sphere *)));
 	ft_lstadd_n(&s->obj, ft_lstnew_n("sphere", fill_hard_sphere2(), sizeof(t_sphere *)));
-//	ft_lstadd_n(&s->obj, ft_lstnew_n("plan", fill_hard_plan(), sizeof(t_plan)));
+	ft_lstadd_n(&s->obj, ft_lstnew_n("plan", fill_hard_plan(), sizeof(t_plan)));
 //	ft_lstadd_n(&s->obj, ft_lstnew_n("plan", fill_hard_plan2(), sizeof(t_plan)));
 //	s->obj->next = fill_hard_sphere2();
 //	s->obj->next->next = fill_hard_sphere3();

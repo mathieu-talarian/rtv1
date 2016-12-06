@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/25 18:23:11 by mmoullec          #+#    #+#             */
-/*   Updated: 2016/12/05 19:38:39 by mmoullec         ###   ########.fr       */
+/*   Updated: 2016/12/06 12:50:05 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ t_rgb	get_lambert_term_plane(t_e *e, t_vect ray, t_rend rend)
 		rend.r.g *= dot_product;
 		rend.r.b *= dot_product;
 	}
-	else
-		rend.r = rgb_0();
+//	else
+//		rend.r = rgb_0();
 	return (rend.r);
 }
 
@@ -92,6 +92,9 @@ void	gest_lum(t_e *e, t_vect ray, t_l l, t_rend rend)
 		put_color_to_pixel(e->mlx, l, lambert_term);
 	}
 	else if (rend.type == 1)
+	{
 		lambert_term =  get_lambert_term_plane(e, ray, rend);
+		put_color_to_pixel(e->mlx, l, lambert_term);
+	}
 //	put_color_to_pixel(e->mlx, l, lambert_term);
 }

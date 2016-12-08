@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/22 14:54:41 by mmoullec          #+#    #+#             */
-/*   Updated: 2016/11/26 14:29:59 by mmoullec         ###   ########.fr       */
+/*   Updated: 2016/12/08 16:30:20 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,22 @@ typedef struct	s_vect
 	double		z;
 }				t_vect;
 
+typedef struct s_plane
+{
+	double		a;
+	double		b;
+	double		c;
+	double		d;
+}				t_plane;
+
 t_vect			vect_create(double x, double y, double z);
 t_vect			vect_add(t_vect a, t_vect b);
 t_vect			vect_sub(t_vect a, t_vect b);
 t_vect			vect_cross(t_vect a, t_vect b);
 t_vect			vect_s_mul(t_vect a, double nb);
 t_vect			vect_unit(t_vect a);
+
+t_plane			plane_create(double a, double b, double c, double d);
 
 double			vect_dot(t_vect a, t_vect b);
 double			vect_length(t_vect a);

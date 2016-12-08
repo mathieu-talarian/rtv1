@@ -6,7 +6,7 @@
 #    By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/22 15:22:45 by mmoullec          #+#    #+#              #
-#    Updated: 2016/11/26 14:30:19 by mmoullec         ###   ########.fr        #
+#    Updated: 2016/12/08 16:30:11 by mmoullec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ vect_s_mul.c\
 vect_sub.c\
 vect_unit.c\
 print_vect.c\
+plane_create.c\
 pr_vect.c
 
 all: $(NAME)

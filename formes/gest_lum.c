@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/25 18:23:11 by mmoullec          #+#    #+#             */
-/*   Updated: 2016/12/06 12:50:05 by mmoullec         ###   ########.fr       */
+/*   Updated: 2016/12/08 20:55:06 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,23 +46,21 @@ t_rgb	get_lambert_term_plane(t_e *e, t_vect ray, t_rend rend)
 {
 	t_vect pt_plan;
 
+	t_vect norm_plan = vect_create(rend.norm.a, rend.norm.b, rend.norm.c);
 	pt_plan = vect_s_mul(ray, rend.t);
 	pt_plan = vect_add(pt_plan, e->s->cam_origin);
-
+	pr_vect(pt_plan, " PT PLAN\n");
+//	return (rend.r);
 	t_vect vc_lum_plan = vect_unit(vect_sub(e->s->lum->pos, pt_plan));
-	t_vect vc_plan = vect_unit(vect_sub(pt_plan, rend.centre));
 
-	t_vect vc_cross = vect_cross(rend.norm, vc_plan);
 	double dot_product;
-	dot_product = vect_cos(vc_lum_plan, rend.norm);
-	if (dot_product >= 0)
+	dot_product = vect_cos(vc_lum_plan, vect_unit(norm_plan));
+	if (dot_product > 0)
 	{
 		rend.r.r *= dot_product;
 		rend.r.g *= dot_product;
 		rend.r.b *= dot_product;
 	}
-//	else
-//		rend.r = rgb_0();
 	return (rend.r);
 }
 

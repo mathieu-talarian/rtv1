@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/10 15:00:21 by mmoullec          #+#    #+#             */
-/*   Updated: 2016/12/05 19:16:09 by mmoullec         ###   ########.fr       */
+/*   Updated: 2016/12/08 16:32:31 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ typedef struct		s_plan
 {
 	char			*name;
 	t_vect			pt;
-	t_vect			norm;
+	t_plane			norm;
 	t_rgb			color;
 }					t_plan;
 
@@ -97,7 +97,7 @@ typedef struct	s_rend
 	double		t;
 	t_rgb		r;
 	t_vect		centre;
-	t_vect		norm;
+	t_plane		norm;
 }				t_rend;
 
 

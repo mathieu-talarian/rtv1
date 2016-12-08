@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/10 18:31:12 by mmoullec          #+#    #+#             */
-/*   Updated: 2016/12/06 17:17:21 by mmoullec         ###   ########.fr       */
+/*   Updated: 2016/12/08 20:55:09 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ t_sphere	*fill_hard_sphere()
 	t_sphere *tmp;
 	tmp = (t_sphere *)malloc(sizeof(t_sphere));
 	tmp->name = ft_strdup("sphere");
-	tmp->rayon = 2;
+	tmp->rayon = 1;
 	tmp->centre.x = 1;
-	tmp->centre.y = 0;
+	tmp->centre.y = 1;
 	tmp->centre.z = 0;
 	tmp->rgb.r = 124;
 	tmp->rgb.g = 20;
@@ -32,9 +32,9 @@ t_sphere	*fill_hard_sphere2()
 	t_sphere *tmp;
 	tmp = (t_sphere *)malloc(sizeof(t_sphere));
 	tmp->name = ft_strdup("sphere");
-	tmp->rayon = 2;
+	tmp->rayon = 1;
 	tmp->centre.x = -1;
-	tmp->centre.y = 0;
+	tmp->centre.y = -1;
 	tmp->centre.z = 0;
 	tmp->rgb.r = 2;
 	tmp->rgb.g = 190;
@@ -56,14 +56,27 @@ t_sphere	*fill_hard_sphere3()
 	return (tmp);
 }
 
+
+t_plan		*fill_hard_plan3()
+{
+	t_plan *p;
+
+	p = (t_plan *)malloc(sizeof(t_plan));
+	p->name = ft_strdup("plan");
+	p->pt = vect_create(0, 0, 20);
+	p->norm = plane_create(1, 1, 0, 0);
+	p->color = rgb_create(10, 25, 255);
+	return (p);
+}
+
 t_plan		*fill_hard_plan2()
 {
 	t_plan *p;
 
 	p = (t_plan *)malloc(sizeof(t_plan));
 	p->name = ft_strdup("plan");
-	p->pt = vect_create(0, 1, 0);
-	p->norm = vect_create(0, 0.1, 1);
+	p->pt = vect_create(0, -3, 0);
+	p->norm = plane_create(1, 0, 1, 0);
 	p->color = rgb_create(255, 255, 255);
 	return (p);
 }
@@ -74,8 +87,8 @@ t_plan		*fill_hard_plan()
 
 	p = (t_plan *)malloc(sizeof(t_plan));
 	p->name = ft_strdup("plan");
-	p->pt = vect_create(0, 1, -1.5);
-	p->norm = vect_create(0, 0, -2);
+	p->pt = vect_create(0, 3, 0);
+	p->norm = plane_create(1, 0, 1, 0);
 	p->color = rgb_create(200, 120, 130);
 	return (p);
 }
@@ -118,8 +131,9 @@ t_scene		*fill_hard_scene(void)
 	s->obj = NULL;
 	ft_lstadd_n(&s->obj, ft_lstnew_n("sphere", fill_hard_sphere(), sizeof(t_sphere *)));
 	ft_lstadd_n(&s->obj, ft_lstnew_n("sphere", fill_hard_sphere2(), sizeof(t_sphere *)));
-	ft_lstadd_n(&s->obj, ft_lstnew_n("plan", fill_hard_plan(), sizeof(t_plan)));
+//	ft_lstadd_n(&s->obj, ft_lstnew_n("plan", fill_hard_plan(), sizeof(t_plan)));
 //	ft_lstadd_n(&s->obj, ft_lstnew_n("plan", fill_hard_plan2(), sizeof(t_plan)));
+	ft_lstadd_n(&s->obj, ft_lstnew_n("plan", fill_hard_plan3(), sizeof(t_plan)));
 //	s->obj->next = fill_hard_sphere2();
 //	s->obj->next->next = fill_hard_sphere3();
 	s->lum = NULL;
@@ -138,7 +152,6 @@ void	print_plan(t_plan *p)
 {
 	printf("%s\n", p->name);
 	pr_vect(p->pt, "pt");
-	pr_vect(p->norm, "norm");
 }
 
 void	print_objs(t_list_n **obj)

@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/10 17:03:30 by mmoullec          #+#    #+#             */
-/*   Updated: 2016/12/06 17:17:20 by mmoullec         ###   ########.fr       */
+/*   Updated: 2016/12/08 20:55:07 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,12 +106,15 @@ t_rend	to_draw_plane(t_plan *p, t_vect cam, t_vect r)
 	u.r = p->color;
 	u.centre = p->pt;
 	u.norm = p->norm;
-	a = p->norm.x * (cam.x - p->pt.x);
-	b = p->norm.y * (cam.y - p->pt.y);
-	c = p->norm.z * (cam.z - p->pt.z);
+	a = p->norm.a * (cam.x - p->pt.x);
+	b = p->norm.b * (cam.y - p->pt.y);
+	c = p->norm.c * (cam.z - p->pt.z);
 
-	u.t = -(a + b + c) / (p->norm.x * r.x + p->norm.y * r.y + p->norm.z * r.z);
+	u.t = (a + b + c + p->norm.d) / (p->norm.a * r.x + p->norm.b * r.y + p->norm.c * r.z);
 
+	if (u.t != 0)
+		printf("GOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOD");
+	u.t *= -1;
 	return (u);
 }
 
@@ -139,8 +142,13 @@ void	all_obj(t_e *e, t_list_n **obj, t_l l, t_vect ray)
 {
 	t_rend		rend;
 
-	rend = check_obj_to_draw(e, obj, ray);
-	gest_lum(e, ray, l, rend);
+	static int i = 0;
+	if (i == l.y)
+	{
+		rend = check_obj_to_draw(e, obj, ray);
+		gest_lum(e, ray, l, rend);
+		i++;
+	}
 	//	put_color_to_pixel(e->mlx, l, rend.r);
 }
 
@@ -164,10 +172,6 @@ void	put_color_to_black(t_e *e)
 int		start_rt(t_e *e)
 {
 	put_color_to_black(e);
-	t_rgb i;
-	i.r = 100;
-	i.g = 123;
-	i.b = 210;
 	t_vect vec_dir = find_vect_dir(e->s->cam_origin);
 	t_vect up = find_up_vect();
 	t_vect ri = find_right_vect();

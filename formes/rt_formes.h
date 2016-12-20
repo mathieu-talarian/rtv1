@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/10 15:00:21 by mmoullec          #+#    #+#             */
-/*   Updated: 2016/12/20 16:26:41 by mmoullec         ###   ########.fr       */
+/*   Updated: 2016/12/20 17:59:00 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,5 +158,6 @@ double		if_shadow(t_list_n **o, t_vect a, t_vect b);
 void		new_start(t_e *e, t_vect ray, t_rend r, t_l l);
 
 t_rgb get_lambert_term_cercle(t_e *e, t_vect ray, t_rend rend, t_l l);
+
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/20 13:14:22 by mmoullec          #+#    #+#             */
-/*   Updated: 2016/12/20 16:27:42 by mmoullec         ###   ########.fr       */
+/*   Updated: 2016/12/20 17:59:01 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,6 @@ t_rend		t_draw_torus(t_torus *s, t_vect cam_origin, t_vect r)
 	t_rend rend;
 	t_dt_torus dt;
 	fill_dt_torus(&dt, s, cam_origin, r);
-	double t = resolve4(dt);
+	double t = resolve4();
 	return (rend);
 }

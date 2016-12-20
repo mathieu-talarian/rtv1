@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/10 15:00:21 by mmoullec          #+#    #+#             */
-/*   Updated: 2016/12/08 16:32:31 by mmoullec         ###   ########.fr       */
+/*   Updated: 2016/12/20 16:26:41 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,38 @@ typedef struct		s_plan
 	t_plane			norm;
 	t_rgb			color;
 }					t_plan;
+
+typedef struct		s_torus
+{
+	char			*name;
+	t_vect			center;
+	double			a;
+	double			b;
+	t_rgb			rgb;
+}					t_torus;
+
+
+typedef struct		s_fourth_eq
+{
+	double			a;
+	double			b;
+	double			c;
+	double			d;
+	double			e;
+	double			bs;
+	double			aa;
+	double			
+}					t_fourth_eq;
+
+typedef struct		s_dt_torus
+{
+	double			g;
+	double			h;
+	double			i;
+	double			j;
+	double			k;
+	double			l;
+}					t_dt_torus;
 
 
 typedef struct		s_lum

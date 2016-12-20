@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/10 17:03:30 by mmoullec          #+#    #+#             */
-/*   Updated: 2016/12/08 20:55:07 by mmoullec         ###   ########.fr       */
+/*   Updated: 2016/12/20 13:20:41 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,8 +112,6 @@ t_rend	to_draw_plane(t_plan *p, t_vect cam, t_vect r)
 
 	u.t = (a + b + c + p->norm.d) / (p->norm.a * r.x + p->norm.b * r.y + p->norm.c * r.z);
 
-	if (u.t != 0)
-		printf("GOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOD");
 	u.t *= -1;
 	return (u);
 }

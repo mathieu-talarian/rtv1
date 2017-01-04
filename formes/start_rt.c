@@ -6,11 +6,12 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/10 17:03:30 by mmoullec          #+#    #+#             */
-/*   Updated: 2016/12/20 13:20:41 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/01/04 18:31:06 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt_formes.h"
+#include "my_math.h"
 
 double	find_t_det(double a, double b, double c, double det)
 {
@@ -31,11 +32,6 @@ double		min(double a, double b)
 		return (a);
 	else
 		return (b);
-}
-
-double		carre(double a)
-{
-	return (a * a);
 }
 
 double	return_a(t_vect r)
@@ -123,6 +119,8 @@ t_rend		ret_tmp(t_list_n *o, t_e *e, t_vect ray)
 		return (tmp = to_draw_sphere(o->content, e->s->cam_origin, ray));
 	else if (!ft_strcmp(o->name, "plan"))
 		tmp = to_draw_plane(o->content, e->s->cam_origin, ray);
+	else if (!ft_strcmp(o->name, "torus"))
+		tmp = to_draw_torus(o->content, e->s->cam_origin,ray);
 	return (tmp);
 }
 
@@ -140,14 +138,9 @@ void	all_obj(t_e *e, t_list_n **obj, t_l l, t_vect ray)
 {
 	t_rend		rend;
 
-	static int i = 0;
-	if (i == l.y)
-	{
 		rend = check_obj_to_draw(e, obj, ray);
-		gest_lum(e, ray, l, rend);
-		i++;
-	}
-	//	put_color_to_pixel(e->mlx, l, rend.r);
+//		gest_lum(e, ray, l, rend);
+		put_color_to_pixel(e->mlx, l, rend.r);
 }
 
 void	put_color_to_black(t_e *e)

@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/10 15:00:21 by mmoullec          #+#    #+#             */
-/*   Updated: 2016/12/20 17:59:00 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/01/04 17:43:00 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,26 +69,14 @@ typedef struct		s_plan
 
 typedef struct		s_torus
 {
-	char				*name;
+	char			*name;
 	t_vect			center;
 	t_vect			axis;
-	double			innerradius;
-	double			outerradius;
-	t_rgb				rgb;
-}								t_torus;
+	double			irad;
+	double			orad;
+	t_rgb			rgb;
+}					t_torus;
 
-
-typedef struct		s_fourth_eq
-{
-	double			a;
-	double			b;
-	double			c;
-	double			d;
-	double			e;
-	double			bs;
-	double			aa;
-//	double
-}					t_fourth_eq;
 
 typedef struct		s_dt_torus
 {
@@ -151,6 +139,7 @@ t_vect		find_up_left(t_vect cam_pos, t_vect upvect, t_vect c, t_vect d);
 
 void	gest_lum(t_e *e, t_vect ray, t_l l, t_rend rend);
 t_rend		to_draw_sphere(t_sphere *s, t_vect cam_origin, t_vect r);
+t_rend		to_draw_torus(t_torus *s, t_vect cam_origin, t_vect r);
 
 t_rend		check_obj_to_draw(t_e *e, t_list_n **o, t_vect r);
 t_rend		ret_tmp(t_list_n *o, t_e *e, t_vect ray);

@@ -13,7 +13,7 @@
 #ifndef MY_MLX_H
 # define MY_MLX_H
 
-# include "mlx.h"
+# include "../minilibx_macos/mlx.h"
 # include <math.h>
 # include <stdlib.h>
 

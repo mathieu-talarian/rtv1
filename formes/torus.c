@@ -12,23 +12,42 @@
 
 #include "rt_formes.h"
 
-double		carre(double a) { return (a * a); }
-
-void		fill_dt_torus(t_dt_torus *dt, t_torus *s, t_vect e, t_vect d)
-{
-	dt->g = 4 * carre(s->a) * (carre(e.x) + carre(e.y));
-	dt->h = 8 * carre(s->a) * (d.x * e.x + d.y * e.y);
-	dt->i = 4 * carre(s->a) * (carre(d.x) + carre(d.y));
-	dt->j = carre(vect_length(e));
-	dt->k = 2 * (vect_dot(d, e));
-	dt->l = carre(vect_length(d)) + (carre(s->a) - carre(s->b));
-}
-
 t_rend		t_draw_torus(t_torus *s, t_vect cam_origin, t_vect r)
 {
-	t_rend rend;
-	t_dt_torus dt;
-	fill_dt_torus(&dt, s, cam_origin, r);
-	double t = resolve4();
-	return (rend);
+	t_vect rayOriginPosition = cam_origin;
+	t_vect rayDirection = r;
+
+	t_vect centerToRayOrigin = vect_sub(rayOriginPosition, s->center);
+	const float centerToRayOriginDotDirection = vect_dot(rayDirection,
+		centerToRayOrigin);
+	float	centerToRayOriginDotDirectionSquared = vect_dot(centerToRayOrigin,
+		centerToRayOrigin);
+	float innerRadiusSquared = s->innerradius * s->innerradius;
+	float outerRadiusSquared = s->outerradius * s->outerradius;
+
+	float	axisDotCenterToRayOrigin	= vect_dot(s->axis, centerToRayOrigin);
+	float	axisDotRayDirection = vect_dot(s->axis, rayDirection);
+	float	a = 1 - axisDotRayDirection * axisDotRayDirection;
+	float	b = 2 * vect_dot(centerToRayOrigin, rayDirection) -
+	axisDotCenterToRayOrigin * axisDotRayDirection;
+	float c = centerToRayOriginDotDirectionSquared -
+	axisDotCenterToRayOrigin * axisDotCenterToRayOrigin;
+	float	d = centerToRayOriginDotDirectionSquared +
+	outerRadiusSquared - innerRadiusSquared;
+
+	t_5pow	zz;
+	// Solve quartic equation with coefficients A, B, C, D and E
+	zz.q4 = 1;
+	zz.q3 = 4 * centerToRayOriginDotDirection;
+	zz.q2 = 2 * d + zz.q3 * zz.q3 * 0.25 - 4 * outerRadiusSquared * a;
+	zz.q1 = zz.q3 * d - 4 * outerRadiusSquared * b;
+	zz.q0 = d * d - 4 * outerRadiusSquared * c;
+
+	// Maximum number of roots is 4
+	const int maxRootsCount = 4;
+	double roots[maxRootsCount] = {-1.0, -1.0, -1.0, -1.0};
+	int i = quartic_solver(roots, zz);
+	printf("%d\n", i);
+	t_rend oop;
+	return (oop);
 }

@@ -13,10 +13,11 @@
 #ifndef RT_FORMES_H
 # define RT_FORMES_H
 
-# include <mlx.h>
+# include "../minilibx_macos/mlx.h"
 # include "../libft/libft.h"
 # include "../libvect/vect.h"
 # include "../libmlx/my_mlx.h"
+# include "../libmy_math/my_math.h"
 # define WNA1 (*e)->s->name
 # define WH1 (*e)->s->win_dim.h
 # define WW1 (*e)->s->win_dim.w
@@ -68,12 +69,13 @@ typedef struct		s_plan
 
 typedef struct		s_torus
 {
-	char			*name;
+	char				*name;
 	t_vect			center;
-	double			a;
-	double			b;
-	t_rgb			rgb;
-}					t_torus;
+	t_vect			axis;
+	double			innerradius;
+	double			outerradius;
+	t_rgb				rgb;
+}								t_torus;
 
 
 typedef struct		s_fourth_eq
@@ -85,7 +87,7 @@ typedef struct		s_fourth_eq
 	double			e;
 	double			bs;
 	double			aa;
-	double			
+//	double
 }					t_fourth_eq;
 
 typedef struct		s_dt_torus

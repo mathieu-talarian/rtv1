@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/10 17:03:30 by mmoullec          #+#    #+#             */
-/*   Updated: 2017/01/04 18:31:06 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/01/05 21:51:51 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,6 +179,8 @@ int		start_rt(t_e *e)
 		l.x = -1;
 		while (++l.x < WW)
 		{
+//			l.x = WW / 2;
+//			l.y = WH / 2;
 			rayon = vect_sub(vect_s_mul(ri, (xIndent * l.x)), vect_s_mul(up, (yIndent * l.y)));
 			rayon = vect_add(upleft, rayon);
 			rayon = vect_sub(rayon, e->s->cam_origin);

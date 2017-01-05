@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/10 18:31:12 by mmoullec          #+#    #+#             */
-/*   Updated: 2017/01/04 19:00:26 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/01/05 21:51:49 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ t_torus		*fill_hard_torus()
 	tmp = (t_torus *)malloc(sizeof(t_torus));
 	tmp->name = ft_strdup("torus");
 	tmp->center = vect_create(0, 0, 0);
-	tmp->axis = vect_create(1, 1, 0);
-	tmp->irad = 4;
-	tmp->orad = 3;
+	tmp->axis = vect_create(1, 0, 0);
+	tmp->irad = 0.5;
+	tmp->orad = 2;
 	tmp->rgb = rgb_create(100, 145, 34);
 	return (tmp);
 }
@@ -31,8 +31,8 @@ t_sphere	*fill_hard_sphere()
 	tmp = (t_sphere *)malloc(sizeof(t_sphere));
 	tmp->name = ft_strdup("sphere");
 	tmp->rayon = 1;
-	tmp->centre.x = 1;
-	tmp->centre.y = 1;
+	tmp->centre.x = -3;
+	tmp->centre.y = 0;
 	tmp->centre.z = 0;
 	tmp->rgb.r = 124;
 	tmp->rgb.g = 20;
@@ -143,7 +143,7 @@ t_scene		*fill_hard_scene(void)
 	s->win_dim.h = 800;
 	s->obj = NULL;
 	ft_lstadd_n(&s->obj, ft_lstnew_n("torus", fill_hard_torus(), sizeof(t_torus *)));
-//	ft_lstadd_n(&s->obj, ft_lstnew_n("sphere", fill_hard_sphere(), sizeof(t_sphere *)));
+	ft_lstadd_n(&s->obj, ft_lstnew_n("sphere", fill_hard_sphere(), sizeof(t_sphere *)));
 //	ft_lstadd_n(&s->obj, ft_lstnew_n("sphere", fill_hard_sphere2(), sizeof(t_sphere *)));
 //	ft_lstadd_n(&s->obj, ft_lstnew_n("plan", fill_hard_plan(), sizeof(t_plan)));
 //	ft_lstadd_n(&s->obj, ft_lstnew_n("plan", fill_hard_plan2(), sizeof(t_plan)));

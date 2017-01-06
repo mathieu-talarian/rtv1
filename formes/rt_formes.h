@@ -119,7 +119,9 @@ typedef struct	s_rend
 	double		t;
 	t_rgb		r;
 	t_vect		centre;
+	t_vect		axis;
 	t_plane		norm;
+	double		orad;
 }				t_rend;
 
 
@@ -149,6 +151,7 @@ double		if_shadow(t_list_n **o, t_vect a, t_vect b);
 void		new_start(t_e *e, t_vect ray, t_rend r, t_l l);
 
 t_rgb get_lambert_term_cercle(t_e *e, t_vect ray, t_rend rend, t_l l);
+t_rgb get_torus_normal(t_e *e, t_vect cam, t_vect ray, t_rend rend);
 
 
 #endif

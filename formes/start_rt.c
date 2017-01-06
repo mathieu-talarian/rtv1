@@ -139,8 +139,8 @@ void	all_obj(t_e *e, t_list_n **obj, t_l l, t_vect ray)
 	t_rend		rend;
 
 		rend = check_obj_to_draw(e, obj, ray);
-//		gest_lum(e, ray, l, rend);
-		put_color_to_pixel(e->mlx, l, rend.r);
+		gest_lum(e, ray, l, rend);
+//		put_color_to_pixel(e->mlx, l, rend.r);
 }
 
 void	put_color_to_black(t_e *e)

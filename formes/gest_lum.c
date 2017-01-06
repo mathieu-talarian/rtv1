@@ -85,14 +85,19 @@ void	gest_lum(t_e *e, t_vect ray, t_l l, t_rend rend)
 	//	Ia = get_ambient(rend, e->s->lum->Al);
 	if (rend.type == 0)
 	{
-//		new_start(e, ray, rend, l);
+		//		new_start(e, ray, rend, l);
 		lambert_term = get_lambert_term_cercle(e, ray, rend, l);
 		put_color_to_pixel(e->mlx, l, lambert_term);
 	}
-	else if (rend.type == 1)
+	if (rend.type == 3)
 	{
-		lambert_term =  get_lambert_term_plane(e, ray, rend);
+		lambert_term = get_torus_normal(e, e->s->cam_origin, ray, rend);
 		put_color_to_pixel(e->mlx, l, lambert_term);
 	}
+//	else if (rend.type == 1)
+//	{
+//		lambert_term =  get_lambert_term_plane(e, ray, rend);
+//		put_color_to_pixel(e->mlx, l, lambert_term);
+//	}
 //	put_color_to_pixel(e->mlx, l, lambert_term);
 }

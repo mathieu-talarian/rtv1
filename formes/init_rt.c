@@ -54,8 +54,8 @@ int		main(void)
 	e->s = fill_hard_scene();
 	//print_scene(&e->s);
 	e->mlx = glob_init_mlx(WNA, WW, WH);
-//	mlx_loop_hook(e->mlx->m, start_rt, e);
-	start_rt(e);
+	mlx_loop_hook(e->mlx->m, start_rt, e);
+//	start_rt(e);
 	mlx_hook(e->mlx->w, 2, 1L << 0, key_press, e);
 	mlx_loop(e->mlx->m);
 }

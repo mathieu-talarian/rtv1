@@ -1,7 +1,7 @@
 NAME=formes
 CC=clang
-LIB=-I../libft -I../libmlx -I../libvect -I. -I../libmy_math
-LL=-L../libft -lft -L../libmlx -lmy_mlx -L../libvect -lvect -L../libmy_math -lmy_math -lmlx -framework Appkit -framework OpenGL
+LIB=-I../libft -I../libmlx -I../libvect -I. -I../libmy_math -I../minilibx_macos
+LL=-L../libft -lft -L../libmlx -lmy_mlx -L../libvect -lvect -L../libmy_math -lmy_math -L../minilibx_macos -lmlx -framework Appkit -framework OpenGL
 SRCS=gest_lum.c\
 	main.c\
 	start_rt.c\
@@ -10,6 +10,7 @@ SRCS=gest_lum.c\
 	shadow.c\
 	new_start.c\
 	torus.c\
+	torus_normal.c\
 	check_obj_to_draw.c
 
 OBJ = $(SRCS:.c=.o)

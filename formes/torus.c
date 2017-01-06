@@ -13,18 +13,19 @@
 #include "../libmy_math/my_math.h"
 #include "rt_formes.h"
 
-int			check_ret(double *ret)
+double			check_ret(double *ret)
 {
 	int i = -1;
 	int j = 0;
 	float root;
+	float root_rend = 0;
 	while (++i < 4)
 	{
 		root = ret[i];
-		if (root > -1)
-			return (1);
+		if (root > -1 && (root_rend == 0 || root < root_rend))
+			root_rend = root;
 	}
-	return (0);
+	return (root_rend);
 }
 
 t_rend		to_draw_torus(t_torus *s, t_vect cam_origin, t_vect r)
@@ -59,39 +60,23 @@ t_rend		to_draw_torus(t_torus *s, t_vect cam_origin, t_vect r)
 
 	double ret[4] = {-1.0, -1.0, -1.0, -1.0};
 	int j = quartic_solver(ret, zz);
-	//	printf("%d\n", j);
 
 	t_rend rend;
 	rend.t = 0;
 	rend.imp = 0;
 	int i = -1;
-	//	check_ret(ret);
 	if (j == 0)
-	{
-		//		rend.t = 1;
-		//		rend.imp = 1;
-		//		rend.r = rgb_create(123, 165, 12);
 		return (rend);
-	}
-	if (j == 2)
+	if (j == 2 || j == 4)
 	{
-		if (check_ret(ret))
-		{
-			rend.t = 1;
-			rend.imp = 1;
-			rend.r = rgb_create(123, 16, 245);
-			return (rend);
-		}
-	}
-	if (j == 4)
-	{
-		if (check_ret(ret))
-		{
-			rend.t = 1;
-			rend.imp = 1;
-			rend.r = rgb_create(12, 165, 45);
-			return (rend);
-		}
+		rend.t = check_ret(ret);
+		rend.imp = 1;
+		rend.centre = s->center;
+		rend.axis = s->axis;
+		rend.r = s->rgb;
+		rend.type = 3;
+		rend.orad = s->orad;
+		return (rend);
 	}
 	return (rend);
 }

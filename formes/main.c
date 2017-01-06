@@ -31,8 +31,8 @@ t_sphere	*fill_hard_sphere()
 	tmp = (t_sphere *)malloc(sizeof(t_sphere));
 	tmp->name = ft_strdup("sphere");
 	tmp->rayon = 1;
-	tmp->centre.x = -3;
-	tmp->centre.y = 0;
+	tmp->centre.x = 0;
+	tmp->centre.y = 1;
 	tmp->centre.z = 0;
 	tmp->rgb.r = 124;
 	tmp->rgb.g = 20;
